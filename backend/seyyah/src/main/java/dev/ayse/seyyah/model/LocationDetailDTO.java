@@ -11,5 +11,6 @@ public record LocationDetailDTO(String locationId,
                                 String rating,
                                 String ratingImage,
                                 List<TripAdvisorPhotoResult> photos,
-                                List<TripAdvisorSubRatings> subratings) {
+                                List<TripAdvisorSubRatings> subratings,
+                                List<ReviewDTO> reviews) {
 }

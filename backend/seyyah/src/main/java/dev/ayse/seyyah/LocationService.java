@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.ZoneOffset;
 import java.util.List;
 
 @Service
@@ -22,7 +23,7 @@ public class LocationService {
 
       return response.data().stream().skip(2).parallel().map(result ->
               new SearchResponseDTO(result.locationId(),
-                      result.address().address(),
+                      getAddress(result.address()),
                       result.name(),
                       photo(result.locationId()))).toList();
     }
@@ -44,13 +45,52 @@ public class LocationService {
                 response.locationId(),
                 response.name(),
                 response.description(),
-                response.address().address(),
+                getAddress(response.address()),
                 response.latitude(),
                 response.longitude(),
                 response.rating(),
                 response.ratingImage(),
                 photo(response.locationId()),
-                response.subratings().values().stream().toList()
+                getLocationSubratings(response),
+                reviews(response.locationId())
         );
+    }
+
+    public List<ReviewDTO> reviews(String locationId) {
+        TripAdvisorReviewResults response = restTemplate.getForObject(
+                baseURL+ locationId+"/reviews?language=en&key=" +apikey,
+                TripAdvisorReviewResults.class);
+        return response.data().stream().map(review -> new ReviewDTO(
+                review.publishedDate(),
+                review.rating(),
+                review.ratingImageUrl(),
+                review.text(),
+                review.title(),
+                review.travelDate().atStartOfDay(ZoneOffset.UTC),
+                review.user().username(),
+                review.user().avatar(),
+                getReviewSubratings(review)
+        )).toList();
+    }
+
+    private String getAddress(TripAdvisorAddress address) {
+        if (address == null) {
+            return "";
+        }
+        return address.address();
+    }
+
+    private List<TripAdvisorSubRatings> getLocationSubratings(TripAdvisorLocationDetail response) {
+        if (response.subratings() == null) {
+            return List.of();
+        }
+        return response.subratings().values().stream().toList();
+    }
+
+    private List<TripAdvisorSubRatings> getReviewSubratings(TripAdvisorReviewResult review) {
+        if (review.subratings() == null) {
+            return List.of();
+        }
+        return review.subratings().values().stream().toList();
     }
 }

@@ -1,7 +1,8 @@
 import PhotoResult from './PhotoResult';
 import Rating from './Rating'
+import Review from './Review';
 
-type SearchDetails = {
+type LocationDetails = {
     locationId: string
     name: string
     description: string
@@ -12,6 +13,7 @@ type SearchDetails = {
     ratingImage: string
     photos: PhotoResult[]
     subratings: Rating[]
+    reviews: Review[]
 };
 
-export default SearchDetails;
+export default LocationDetails;

@@ -2,11 +2,9 @@ package dev.ayse.seyyah;
 
 import dev.ayse.seyyah.model.LocationDetailDTO;
 import dev.ayse.seyyah.model.SearchResponseDTO;
-import dev.ayse.seyyah.model.TripAdvisorLocationDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
