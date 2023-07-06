@@ -1,13 +1,13 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import background from './assets/bacxground.webp'
 import './Search.css'
 import axios from 'axios';
-import SearchResult from './SearchResult';
+import SearchResultItem from './SearchResultItem';
 import { useNavigate } from 'react-router-dom';
 
 type SearchProps = {
   setQuery: (value: string) => any
-  setSearchResults: (value: SearchResult[]) => any
+  setSearchResults: (value: SearchResultItem[]) => any
 };
 
 function Search(props: SearchProps) {
@@ -18,7 +18,7 @@ function Search(props: SearchProps) {
   const onSubmit = (event: any) => {
     event.preventDefault();
     props.setQuery(placeNameInput.current?.value || '');
-    axios.get<SearchResult[]>(`http://localhost:8080/search?searchQuery=${placeNameInput.current?.value}&category=${categoryInput.current?.value}`)
+    axios.get<SearchResultItem[]>(`http://localhost:8080/locations/search?searchQuery=${placeNameInput.current?.value}&category=${categoryInput.current?.value}`)
     .then(response => {
       props.setSearchResults(response.data);
       navigate('/results');

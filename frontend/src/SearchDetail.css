@@ -1,0 +1,10 @@
+@import "../node_modules/react-image-gallery/styles/css/image-gallery.css";
+
+.images{
+  width: 700px;
+  height: 400px;
+  margin:auto
+}
+
+.info{
+}

@@ -1,11 +1,11 @@
 import PhotoResult from "./PhotoResult";
 
-type SearchResult = {
+type SearchResultItem = {
     id: string;
     address: string;
     name: string;
     photos: PhotoResult[];
   };
   
-  export default SearchResult;
+  export default SearchResultItem;
   

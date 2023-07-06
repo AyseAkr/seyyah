@@ -9,8 +9,8 @@
   margin-top: 2em;
 }
 
-.header-logo > img {
-  height: 200px;
+.header-logo > a > img {
+  height: 150px;
 }
 
 .header-logo > h1 {
