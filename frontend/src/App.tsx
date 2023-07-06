@@ -1,25 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import logo from './assets/logo.png'
 import './App.css'
-import axios from 'axios';
+import { Route, Routes } from 'react-router-dom';
+import Search from './Search';
+import SearchResults from './SearchResults';
+import SearchDetail from './SearchDetail';
+import SearchResult from './SearchResult';
+import { useState } from 'react';
 
 function App() {
-  const [data, setData] = useState<String>("")
+  const [query, setQuery] = useState<string>('');
+  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
 
-
-axios.get('http://localhost:8080/api/hello').then(response => {
-  console.log(response);
-  setData(response.data);
-  
-});
-
-  
   return (
     <>
-      <div>
-      {data}
+      <div className='header-logo'>
+        <h1>Welcome to the </h1><img src={logo} />
       </div>
+      <Routes>
+        <Route path="/" element={<Search setQuery={setQuery} setSearchResults={setSearchResults}/>}></Route>
+        <Route path="/results" element={<SearchResults query={query} results={searchResults} />}></Route>
+        <Route path="/location/:id" element={<SearchDetail/>}></Route>
+      </Routes>
     </>
   )
 }

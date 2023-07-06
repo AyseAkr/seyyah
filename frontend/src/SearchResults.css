@@ -1,0 +1,9 @@
+.search-results-data{
+  display: flex;
+  border: 15px solid whitesmoke;
+}
+
+.location-address{
+  display: block;
+  margin: auto;
+}

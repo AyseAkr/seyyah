@@ -1,0 +1,21 @@
+input {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+  width: 250px;
+  background-color: white;
+  color: black;
+}
+
+select {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+  width: 150px;
+  background-color: white;
+  color: black;
+}
+
+.search {
+  margin-bottom: 10px;
+}
