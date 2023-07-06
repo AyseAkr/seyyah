@@ -1,7 +1,6 @@
-@import "../node_modules/react-image-gallery/styles/css/image-gallery.css";
+@import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
 
 .images {
-  width: 700px;
   margin: auto;
 }
 

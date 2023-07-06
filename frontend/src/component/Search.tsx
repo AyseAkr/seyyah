@@ -1,8 +1,8 @@
 import { useRef } from 'react'
-import background from './assets/bacxground.webp'
-import './Search.css'
+import background from '../assets/bacxground.webp'
+import '../styles/Search.css'
 import axios from 'axios';
-import SearchResultItem from './SearchResultItem';
+import SearchResultItem from '../SearchResultItem';
 import { useNavigate } from 'react-router-dom';
 
 type SearchProps = {

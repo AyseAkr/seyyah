@@ -1,10 +1,10 @@
-import logo from './assets/logo.png'
-import './App.css'
+import logo from '../assets/logo.png'
+import '../styles/App.css'
 import { Link, Route, Routes } from 'react-router-dom';
 import Search from './Search';
 import SearchResults from './SearchResults';
 import SearchDetail from './SearchDetail';
-import SearchResultItem from './SearchResultItem';
+import SearchResultItem from '../SearchResultItem';
 import { useState } from 'react';
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <div className='header-logo'>
-        <h1></h1><Link to='/'><img src={logo} /></Link>
+        <Link to='/'><img src={logo} /></Link>
       </div>
       <Routes>
         <Route path="/" element={<Search setQuery={setQuery} setSearchResults={setSearchResults}/>}></Route>

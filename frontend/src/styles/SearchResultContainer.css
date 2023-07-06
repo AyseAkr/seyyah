@@ -1,9 +1,9 @@
-.search-results-data{
+.search-results-data {
   display: flex;
   border: 15px solid whitesmoke;
 }
 
-.location-address{
+.location-address {
   display: block;
   margin: auto;
 }
