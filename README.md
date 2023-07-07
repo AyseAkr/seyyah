@@ -1,11 +1,9 @@
-# seyyah
-Welcome to the Seyyah repository! Seyyah is a travel recomendation application designed to help users plan their trips, explore destinations, and keep track of their travel experiences.
+# Seyyah
 
-This README will guide you through the setup and usage of the Seyyah application. Please follow the instructions carefully to get started.
+![logo](logo.png)
 
-# Usage
-Seyyah provides a user-friendly interface for managing your travel plans. Here are some of the main features:
+Welcome to the Seyyah! Seyyah is a travel recomendation application designed to help users plan their trips by exploring hotels, attractions and restaurants. 
 
- - Plan Your Trips: Create and manage your travel itineraries by adding destinations, activities, and notes.
- - Explore Destinations: Discover popular travel destinations, read reviews, and get recommendations for attractions, restaurants, and accommodations.
+It consists of a [frontend](frontend/README.md) and a [backend](backend/README.md) application. For more details, please check documentation of these projects.
 
+This project was developed in 24 hours in [&lt;salt/&gt; Java Full-Stack Developer Bootcamp](https://www.salt.study/our-hubs/amsterdam/code-bootcamps/java-fullstack).
