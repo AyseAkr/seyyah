@@ -7,6 +7,7 @@ import "../styles/SearchDetail.css";
 import ImageResult from "../ImageResult";
 import DetailSection from "./DetailSection";
 import About from "./About";
+import Reviews from "./Reviews";
 
 export default function SearchDetail() {
   const { id } = useParams();
@@ -19,11 +20,15 @@ export default function SearchDetail() {
   }, []);
 
   const getLargestImage = (image: ImageResult) => {
-    return image?.original?.url || image?.large?.url || image?.medium?.url || image?.small?.url || "";
+    return (
+      image?.original?.url || image?.large?.url || image?.medium?.url || image?.small?.url || ""
+    );
   };
 
   const getSmallestImage = (image: ImageResult) => {
-    return image?.small?.url || image?.medium?.url || image?.large?.url || image?.original?.url || "";
+    return (
+      image?.small?.url || image?.medium?.url || image?.large?.url || image?.original?.url || ""
+    );
   };
 
   const images = (details?.photos || []).map((photo) => {
@@ -33,57 +38,35 @@ export default function SearchDetail() {
       originalTitle: photo.caption,
     };
   });
-  return (
-    <>
-      <h2>{details?.name}</h2>
-      <div className="images">
-        <ImageGallery
-          lazyLoad={true}
-          thumbnailPosition={"right"}
-          items={images}
-          useBrowserFullscreen={false}
-          showBullets={true}
-          autoPlay={true}
-        ></ImageGallery>
-      </div>
-      <DetailSection title="About">
-        {details && <About details={details}></About>}
-      </DetailSection>
 
-      <DetailSection title="Reviews">
-        <div className="reviews">
-          {details?.reviews.map((review) => (
-            <div className="review" key={review.user}>
-              <div className="avatar">
-                <img src={review.avatar.small}></img>
-              </div>
-              <div className="review-content">
-                <h4>{review.title}</h4>
-                <div className="review-rating">
-                  Rating: <img src={review.ratingImageUrl}></img> {review.rating}
-                </div>
-                <p>{review.text}</p>
-                <p>Date of stay : {new Date(review.travelDate * 1000).toDateString()}</p>
-                <table className="subratings-table">
-                  <tbody>
-                    {review.subratings.map((subrating) => (
-                      <tr key={review.user + "_" + subrating.localized_name}>
-                        <td>
-                          <h5 className="subrating-value">{subrating.localized_name}</h5>
-                        </td>
-                        <td>
-                          <img src={subrating.rating_image_url}></img>
-                        </td>
-                        <td>{subrating.value}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          ))}
-        </div>
-      </DetailSection>
-    </>
+  return (
+    <div>
+      {details ? (
+        <>
+          <h2>{details.name}</h2>
+          <div className="images">
+            <ImageGallery
+              lazyLoad={true}
+              thumbnailPosition={"right"}
+              items={images}
+              useBrowserFullscreen={false}
+              showBullets={true}
+              autoPlay={true}
+            ></ImageGallery>
+          </div>
+
+          <DetailSection title="About">
+            <About details={details}></About>
+          </DetailSection>
+
+          {details.reviews.length > 0 && (
+            <DetailSection title="Reviews">
+              <Reviews reviews={details.reviews}></Reviews>
+            </DetailSection>
+          )}
+        </>
+      ) : "Loading..."
+    }
+    </div>
   );
 }
